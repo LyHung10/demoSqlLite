@@ -9,7 +9,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import java.util.List;
 
-import vn.iotstart.sql_lite.MainActivity;
+import vn.iotstart.sql_lite.MainSQLliteActivity;
 import vn.iotstart.sql_lite.R;
 import vn.iotstart.sql_lite.model.NotesModel;
 
@@ -74,8 +74,8 @@ public class NoteAdapter extends BaseAdapter {
         viewHolder.imageViewAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (context instanceof MainActivity) {
-                    ((MainActivity) context).DialogThem(); // Gọi phương thức DialogThem() từ MainActivity
+                if (context instanceof MainSQLliteActivity) {
+                    ((MainSQLliteActivity) context).DialogThem(); // Gọi phương thức DialogThem() từ MainActivity
                 }
             }
         });
@@ -83,9 +83,9 @@ public class NoteAdapter extends BaseAdapter {
         viewHolder.imageViewEdit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (context instanceof MainActivity) {
+                if (context instanceof MainSQLliteActivity) {
                     // dialog trong main activity.java
-                    ((MainActivity) context).DialogUpdateNotes(notes.getNameNote(), notes.getIdNote());
+                    ((MainSQLliteActivity) context).DialogUpdateNotes(notes.getNameNote(), notes.getIdNote());
                 }
             }
         });
@@ -93,9 +93,9 @@ public class NoteAdapter extends BaseAdapter {
         viewHolder.imageViewDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (context instanceof MainActivity) {
+                if (context instanceof MainSQLliteActivity) {
                     // dialog trong main activity.java
-                    ((MainActivity) context).DialogDeleteNodes(notes.getNameNote(), notes.getIdNote());
+                    ((MainSQLliteActivity) context).DialogDeleteNodes(notes.getNameNote(), notes.getIdNote());
                 }
             }
         });

@@ -11,7 +11,6 @@ import android.view.View;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -21,7 +20,7 @@ import java.util.ArrayList;
 import vn.iotstart.sql_lite.adapter.NoteAdapter;
 import vn.iotstart.sql_lite.model.NotesModel;
 
-public class MainActivity extends AppCompatActivity {
+public class MainSQLliteActivity extends AppCompatActivity {
     // Khai báo biến toàn cục
     DatabaseHandler databaseHandler;
     ListView listView;
@@ -110,12 +109,12 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 String noteText = addText.getText().toString().trim();
                 if (noteText.isEmpty()) {
-                    Toast.makeText(MainActivity.this, "Vui lòng nhập tên Notes", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MainSQLliteActivity.this, "Vui lòng nhập tên Notes", Toast.LENGTH_SHORT).show();
                     return;
                 }
 
                 databaseHandler.QueryData("INSERT INTO Notes VALUES(null, '" + noteText + "')");
-                Toast.makeText(MainActivity.this, "Đã thêm Notes", Toast.LENGTH_SHORT).show();
+                Toast.makeText(MainSQLliteActivity.this, "Đã thêm Notes", Toast.LENGTH_SHORT).show();
                 databaseSQLite(); // Gọi hàm load lại dữ liệu
                 dialog.dismiss();
             }
@@ -152,11 +151,11 @@ public class MainActivity extends AppCompatActivity {
                 if (!newName.isEmpty()) {
                     // Cập nhật dữ liệu SQLite
                     databaseHandler.QueryData("UPDATE Notes SET NameNotes = '" + newName + "' WHERE Id = " + id);
-                    Toast.makeText(MainActivity.this, "Đã cập nhật Notes thành công", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MainSQLliteActivity.this, "Đã cập nhật Notes thành công", Toast.LENGTH_SHORT).show();
                     dialog.dismiss();
                     databaseSQLite(); // Load lại dữ liệu sau khi cập nhật
                 } else {
-                    Toast.makeText(MainActivity.this, "Tên ghi chú không được để trống!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MainSQLliteActivity.this, "Tên ghi chú không được để trống!", Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -179,7 +178,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
                 public void onClick (DialogInterface dialog,int which) {
                 databaseHandler.QueryData("DELETE FROM Notes WHERE Id = '" + id + "'");
-                Toast.makeText(MainActivity.this, "Đã xóa notes" + name + "thành công", Toast.LENGTH_SHORT).show();
+                Toast.makeText(MainSQLliteActivity.this, "Đã xóa notes" + name + "thành công", Toast.LENGTH_SHORT).show();
                 databaseSQLite();
             }
         });
